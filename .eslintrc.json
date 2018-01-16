@@ -5,7 +5,13 @@
         "es6": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+
+    
+    "extends": [
+        "plugin:jest/recommended",
+        "eslint:recommended"
+    ],
+
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -14,7 +20,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "jest"
     ],
     "rules": {
         "indent": [
