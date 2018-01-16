@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -13,9 +14,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prod":"node src/server/server.js"
+    "dev:server": "nodemon src/serverES6/server.js --exec babel-node",
+    "build:server": "babel src/serverES6 --out-dir src/server"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-node8": "^1.2.0",
+    "babel-preset-react": "^6.24.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.0",
@@ -25,12 +34,6 @@
     "identity-obj-proxy": "^3.0.0",
     "react-test-renderer": "^16.2.0",
     "regenerator-runtime": "^0.11.1"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
   },
   "description": "manage book club",
   "main": "index.js",

@@ -9,7 +9,7 @@
 			"type": "chrome",
 			"request": "launch",
 			"name": "ServerSide",
-			"url": "http://localhost:9000",
+			"url": "http://localhost:8100",
 			"webRoot": "${workspaceRoot}/build",
 			"preLaunchTask": "build"
 		},
@@ -24,9 +24,9 @@
 			"type": "chrome",
 			"request": "launch",
 			"url": "http://localhost:3000",
-			"webRoot": "${workspaceRoot}/src",
+			"webRoot": "${workspaceRoot}/src/client",
 			"sourceMapPathOverrides": {
-				"webpack:///src/*": "${webRoot}/*"
+				"webpack:///src/client/*": "${webRoot}/*"
 			}
 		}
 	]
