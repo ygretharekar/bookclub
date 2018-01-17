@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { connect } from "react-redux";
+
+import logo from "./createReactApp/logo.svg";
+import "./createReactApp/App.css";
 
 class App extends Component {
 	render() {
@@ -15,7 +17,7 @@ class App extends Component {
 						Create React App
 					</h1>
 					<p className="App-intro">
-						To get started, edited <code>src/client/App.js</code> and saved to reload.
+						To get started, edited <code>src/client/App.js</code> and save to reload.
 					</p>
 				</main>
 			</div>
@@ -23,4 +25,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default connect(null)(App);
