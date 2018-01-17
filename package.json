@@ -2,13 +2,10 @@
   "name": "bookclub",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "dotenv": "^4.0.0",
-    "express": "^4.16.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
-  },
+  "description": "manage book club",
+  "main": "index.js",
+  "author": "Yashawant Retharekar <yashwant.retharekar@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -16,6 +13,22 @@
     "eject": "react-scripts eject",
     "dev:server": "nodemon src/serverES6/server.js --exec babel-node",
     "build:server": "babel src/serverES6 --out-dir src/server"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.1",
+    "mongoose": "^4.13.9",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.1.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "semantic-ui-react": "^0.77.2"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -33,10 +46,8 @@
     "eslint-plugin-react": "^7.5.1",
     "identity-obj-proxy": "^3.0.0",
     "react-test-renderer": "^16.2.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-immutable-state-invariant": "^2.1.0",
     "regenerator-runtime": "^0.11.1"
-  },
-  "description": "manage book club",
-  "main": "index.js",
-  "author": "Yashawant Retharekar <yashwant.retharekar@gmail.com>",
-  "license": "MIT"
+  }
 }
