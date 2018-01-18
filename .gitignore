@@ -9,6 +9,8 @@
 # production
 /build
 
+/src/client/styles/Semantic-UI-CSS-master
+
 # misc
 .DS_Store
 .env.local

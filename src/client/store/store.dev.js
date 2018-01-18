@@ -5,8 +5,6 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 import reducer from "../reducers/combine";
 
-console.log("DEVV");
-
 export default initialState => createStore(
 	reducer,
 	initialState,
