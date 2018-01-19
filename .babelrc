@@ -2,7 +2,8 @@
 	"presets": [
 		"node8",
 		"es2016",
-		"react"
+		"react",
+		"flow"
 	],
 	"sourceMaps": true
 }

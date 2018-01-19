@@ -7,7 +7,6 @@ export default () => (
 			textAlign="center"
 			verticalAlign="middle"
 		>
-
 			<Grid.Column
 			>
 				<Header
@@ -23,20 +22,20 @@ export default () => (
 							fluid
 							icon="user"
 							iconPosition="left"
-							placeholder="E-mail address"
+							placeholder="username"
+						/>
+						<Form.Input 
+							fluid
+							icon="at"
+							iconPosition="left"
+							placeholder="e-mail"
+							type="email"
 						/>
 						<Form.Input 
 							fluid
 							icon="lock"
 							iconPosition="left"
 							placeholder="Password"
-							type="password"
-						/>
-						<Form.Input 
-							fluid
-							icon="lock"
-							iconPosition="left"
-							placeholder="Retype password"
 							type="password"
 						/>
 						<Button
@@ -52,7 +51,7 @@ export default () => (
 				<Message
 				>
 					<Link to="/">
-						Go Back  
+						Go Back
 					</Link>
 				</Message>
 			</Grid.Column>
