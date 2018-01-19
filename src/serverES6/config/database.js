@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 mongoose.Promise = global.Promise;
+
+dotenv.config({silence: true});
 
 try {
 	mongoose.connect(process.env.MONGO_HOST);
@@ -22,6 +25,5 @@ db
 			throw err;
 		}
 	);
-
 	
 export default db;

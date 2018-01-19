@@ -1,22 +1,16 @@
 import express from "express";
 import path from "path";
+import appConfig from "./config/middleware";
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "../../build")));
-
-app.get(
-	"/*", 
-	(req, res) => {
-		res.sendFile(path.join(__dirname, "../../build", "index.html"));
-	}
-);
+appConfig(app);
 
 app.listen(
 	8100, 
 	err => {
-		if (err) 
-			throw err;
+		if (err) throw err;
+
 		console.log("[INFO] Listening on *: 8100");
 	}
 );

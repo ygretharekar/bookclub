@@ -6,12 +6,13 @@ import fallback from "express-history-api-fallback";
 import MongoStore from "connect-mongo";
 
 import db from "./database";
+import authRoutes from "../routes/authRoutes";
 
 const mongoConnect = MongoStore(session);
 
 export default app => {
 	// app.use(express.static(path.join(__dirname, "../../build")));
-	app.use(express.static());
+	app.use(express.static("build"));
 	app.use(fallback(path.join(__dirname, "../../build")));
 
 	app.use(session(
@@ -34,6 +35,8 @@ export default app => {
 	passport.serializeUser((user, done) => done(null, user) );
 	passport.deserializeUser((user, done) => done(null, user) );
 
+	app.use(authRoutes);
+
 	app.use(
 		(err, req, res, next) => {
 			res.status(err.status || 500).json(
@@ -46,5 +49,4 @@ export default app => {
 			next();
 		}
 	);
-
 };
