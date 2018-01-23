@@ -1,14 +1,27 @@
+import React, { Component } from "react";
+// import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import signupPageComp from  "../components/signupPageComp";
-/* import { actionCreator } from "../actionPath";
+import SignupPageComp from "../components/signupPageComp";
 
-const mapStateToProps = (state, ownProps) => ({
-	
+export class SignupPage extends Component {
+	static propTypes = {
+	}
+
+	render() {
+		return (
+			<div>
+				<SignupPageComp />
+			</div>
+		);
+	}
+}
+
+const mapStateToProps = (state) => ({
+	user: state.user
 });
 
 const mapDispatchToProps = {
-	
+
 };
-export default connect(mapStateToProps, mapDispatchToProps)(signupPageComp);
- */
-export default connect(null)(signupPageComp);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupPage);

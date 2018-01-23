@@ -1,5 +1,6 @@
 let initialState = {
 	email: "",
+	username: "",
 	registerationError:"",
 	loginError:"",
 	token:"",
@@ -9,8 +10,55 @@ let initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-	case "ACTION_TYPE":
-		return; 
+	case "LOGIN_REQUEST":
+		return {
+			...state,
+			isFetching: true,
+			isAuthenticated: false,
+			...action.payload
+		}; 
+
+	case "LOGIN_SUCCESS":
+		return {
+			...state,
+			isFetching: false,
+			isAuthenticated: true,
+			loginError: "",
+			registrationError: "",
+			...action.payload
+		};	
+	
+	case "LOGIN_FAILURE":
+		return {
+			...state,
+			isFetching: false,
+			isAuthenticated: false,
+			...action.payload
+		};
+	
+	case "LOGOUT_SUCCESS":
+		return {
+			...state,
+			isFetching: false,
+			isAuthenticated: false,
+			...action.payload
+		};
+	
+	case "NEW_SIGNUP":
+		return {
+			...state,
+			isFetching: true,
+			isAuthenticated: false
+		};
+	
+	case "REGISTERATION_ERROR":
+		return {
+			...state,
+			isFetching: false,
+			isAuthenticated: false,
+			...action.payload
+		};
+
 	default:
 		return state;
 	}

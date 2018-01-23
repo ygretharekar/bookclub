@@ -44,7 +44,7 @@ export default () => (
 							size="large"
 							positive
 						> 
-							SignUp
+							SignUp 
 						</Button>
 					</Segment>
 				</Form>

@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 import appConfig from "./config/middleware";
 
 const app = express();

@@ -1,8 +1,6 @@
 import axios from "axios";
 let HOST = "http://127.0.0.1:8100";
 
-
-
 ////////////////////////////LOGIN//////////////////////////////
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
@@ -25,6 +23,8 @@ export const loginError = payload => ({
 	type: LOGIN_FAILURE,
 	payload
 });
+
+
 
 /////////////////////////SIGNUP/////////////////////////////
 

@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
         "commonjs": true,
@@ -13,6 +14,7 @@
     ],
 
     "parserOptions": {
+        "ecmaVersion": 2017,
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
             "jsx": true
@@ -24,10 +26,6 @@
         "jest"
     ],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
         "linebreak-style": [
             "error",
             "windows"
@@ -40,15 +38,29 @@
             "error",
             "always"
         ],
-        "no-console": "off",
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "no-const-assign": "warn",
         "no-this-before-super": "warn",
         "no-undef": "warn",
         "no-unreachable": "warn",
-        "no-unused-vars": "warn",
         "constructor-super": "warn",
-        "valid-typeof": "warn"
+        "valid-typeof": "warn",
+        "id-length": 0,
+        "react/no-multi-comp": 0,
+        "import/default": 0,
+        "import/no-duplicates": 0,
+        "import/named": 0,
+        "import/namespace": 0,
+        "import/no-unresolved": 0,
+        "no-console": 0,
+        "no-alert": 0,
+        "max-len": ["error", 150],
+        "no-unused-vars": [1, { "varsIgnorePattern": "_", "argsIgnorePattern": "_" }],
+        "no-underscore-dangle": ["error", { "allow": ["_browserHistory", "__data"] }],
+        "indent": [
+            "error",
+            "tab"
+        ]
     }
 }
