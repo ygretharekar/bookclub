@@ -10,8 +10,7 @@
 			"request": "launch",
 			"name": "ServerSide",
 			"url": "http://localhost:8100",
-			"webRoot": "${workspaceRoot}/build",
-			"preLaunchTask": "build"
+			"webRoot": "${workspaceRoot}/build"
 		},
 		{
 			"type": "node",

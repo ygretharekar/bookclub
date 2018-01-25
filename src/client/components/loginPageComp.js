@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
-export default () => (
+export default props => (
 	<div className="login-form">
 		<Grid
 			textAlign="center"
@@ -24,6 +24,7 @@ export default () => (
 							icon="user"
 							iconPosition="left"
 							placeholder="E-mail address"
+							onChange={props.email}
 						/>
 						<Form.Input 
 							fluid
@@ -31,11 +32,13 @@ export default () => (
 							iconPosition="left"
 							placeholder="Password"
 							type="password"
+							onChange={props.password}
 						/>
 						<Button
 							fluid
 							color="black"
 							size="large"
+							onClick={props.login}
 						> 
 							LogIn
 						</Button>

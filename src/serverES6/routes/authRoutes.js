@@ -16,7 +16,7 @@ app.post(
 	"/register",
 	(req, res, next) => {
 		const userInfo = req.body;
-		console.log("new registeration: ", userInfo);
+		console.log("new registeration is: ", req.body);
 
 		const valid = validate(userInfo);
 
@@ -30,7 +30,6 @@ app.post(
 
 					if(!user){
 						const passwordDigest = bcrypt.hashSync(userInfo.password, 10);
-
 
 						user = new User(
 							{
@@ -66,7 +65,6 @@ app.post(
 								token: createToken(user.username)
 							}
 						);
-
 					}
 				}
 			);
@@ -77,13 +75,12 @@ app.post(
 			console.log("====================================");
 
 			res.status(400).send("registration was invalid ", valid.errors);
-		}
-
+		} 
 	}
 );
 
 app.post(
-	"/session/create",
+	"/login",
 	(req, res) => {
 		const { email, password } = req.body;
 
@@ -112,7 +109,6 @@ app.post(
 				}
 			}
 		);
-
 	}
 );
 

@@ -1,13 +1,64 @@
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import loginPageComp from "../components/loginPageComp";
-/* import { actionCreator } from '../actionPath';
+import { newLogin } from "../actionPath";
+import LoginPageComp from "../components/loginPageComp";
 
-const mapStateToProps = (state, ownProps) => ({
-	
-})
+export class LoginPage extends Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			email: "",
+			password: ""
+		};
+		this.handleLogin = this.handleLogin.bind(this);
+		this.getEmail = this.getEmail.bind(this);
+		this.getPassword = this.getPassword.bind(this);
+	}
+
+	handleLogin(){
+		this.props.newLogin(this.state);
+	}
+
+	getEmail(e){
+		this.setState(
+			{
+				email: e.target.value
+			}
+		);
+	}
+
+	getPassword(e){
+		this.setState(
+			{
+				password: e.target.value
+			}
+		);
+	}
+
+	render() {
+		return (
+			<div>
+				<LoginPageComp 
+					email={this.getEmail}
+					password={this.getPassword}
+					login={this.handleLogin}
+				/>
+
+			</div>
+		);
+	}
+}
+
+const mapStateToProps = (state) => (
+	{
+		isAuthenticated: state.isAuthenticated
+	}
+);
 
 const mapDispatchToProps = {
-	
-} */
+	newLogin
+};
 
-export default connect(null)(loginPageComp); 
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

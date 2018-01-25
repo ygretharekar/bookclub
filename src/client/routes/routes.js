@@ -5,6 +5,8 @@ import App from "../containers/App";
 import HomePage from "../containers/homePage";
 import LoginPage from "../containers/loginPage";
 import SignupPage from "../containers/signupPage";
+import SignupPage from "../containers/all-books-page";
+
 import "../styles/Semantic-UI-CSS-master/semantic.min.css";
 import "../styles/main.css";
 

@@ -36,12 +36,14 @@ export default (state = initialState, action) => {
 			...action.payload
 		};
 	
-	case "LOGOUT_SUCCESS":
+	case "LOGOUT":
 		return {
 			...state,
 			isFetching: false,
 			isAuthenticated: false,
-			...action.payload
+			email: "",
+			username: "",
+			token:""
 		};
 	
 	case "NEW_SIGNUP":

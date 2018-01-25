@@ -25,6 +25,30 @@ export const loginError = payload => ({
 });
 
 
+export const newLogin = 
+	user =>
+		dispatch => {
+			dispatch(requestLogin(user));	
+			axios
+				.post(`${HOST}/login`, user)
+				.then(
+					res => {
+						let u = {
+							username: res.data.username,
+							email: res.data.email,
+							token: res.data.token
+						};
+						dispatch(receiveLogin(u));
+					}
+				)
+				.catch(
+					err => {
+						console.error("Login Error: ", err);
+						dispatch(loginError(err.response.data));
+					}
+				);
+		};
+
 
 /////////////////////////SIGNUP/////////////////////////////
 
@@ -34,7 +58,6 @@ export const newSignup = payload => ({
 	type: NEW_SIGNUP,
 	payload
 });
-
 
 export const REGISTERATION_ERROR = "REGISTERATION_ERROR";
 
@@ -48,8 +71,9 @@ export const registerationError = payload => ({
 export const registerUser = 
 	user => 
 		dispatch => {
+			console.log("new user ", user);
 			dispatch(newSignup(user));
-			axios
+			return axios
 				.post(`${HOST}/register`, user)
 				.then(
 					res => {
@@ -63,10 +87,57 @@ export const registerUser =
 				)
 				.catch(
 					err => {
-						console.error("registeration Error", err.response.data);
+						console.error("registeration Error: ", err.response.data);
 						dispatch(registerationError(err.response.data));
 					}
 				);
 		};
 
-////////////////////////////////////////////////////////////////
+		
+///////////////////////LOGOUT//////////////////////////////
+
+export const LOGOUT = "LOGOUT";
+
+export const logoutUser = () => ({
+	type: LOGOUT
+});
+/////////////////////LOADING//////////////////////////////////
+
+export const LOADING = "LOADING";
+
+export const loading = () => ({
+	type: LOADING
+});
+
+export const FOUND = "FOUND";
+
+
+export const found = () => ({
+	type: FOUND
+});
+
+//////////////////////ADD_BOOK////////////////////////////////
+
+export const ADD_BOOK = "ADD_BOOK";
+
+
+export const addBook = payload => ({
+	type: ADD_BOOK,
+	payload
+});
+
+export const searchBook = () => 
+	book =>
+		dispatch => {
+			dispatch(loading());
+			axios
+				.post("/api/book/add", book)
+				.then( 
+					res => {
+						console.log(res.data);
+					}
+				)
+				.catch(
+					err => console.error(err)
+				);
+		};
