@@ -116,6 +116,35 @@ export const found = () => ({
 	type: FOUND
 });
 
+/////////////////////////GET_BOOKS///////////////////////////////
+
+export const INIT_BOOKS = "INIT_BOOKS";
+
+export const initBooks = payload => ({
+	type: INIT_BOOKS,
+	payload
+});
+
+export const getBooks = 
+	() =>
+		dispatch => {
+			axios
+				.get("/api/getbooks")
+				.then(
+					res => {
+						console.log("====================================");
+						console.log(res.data);
+						console.log("====================================");
+						dispatch(initBooks(res.data));
+						dispatch(found());
+						
+
+					}
+				)
+				.catch( err => console.error(err));
+		};
+
+
 //////////////////////ADD_BOOK////////////////////////////////
 
 export const ADD_BOOK = "ADD_BOOK";
@@ -126,7 +155,7 @@ export const addBook = payload => ({
 	payload
 });
 
-export const searchBook = () => 
+export const searchBook = 
 	book =>
 		dispatch => {
 			dispatch(loading());
@@ -135,9 +164,15 @@ export const searchBook = () =>
 				.then( 
 					res => {
 						console.log(res.data);
+						dispatch(addBook(res.data));
+						dispatch(found());
+					
 					}
+
 				)
 				.catch(
 					err => console.error(err)
 				);
+
+
 		};

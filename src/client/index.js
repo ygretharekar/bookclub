@@ -5,10 +5,12 @@ import { Provider } from "react-redux";
 import "./containers/createReactApp/index.css";
 import Routes from "./routes/routes";
 import configureStore from "./store/store";
+
 // import registerServiceWorker from "./registerServiceWorker";
 // import {unregister} from "./registerServiceWorker";
 
 // unregister();
+
 
 let store = configureStore();
 

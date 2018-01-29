@@ -1,13 +1,23 @@
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import homePageComp from "../components/homePageComp";
-// import { actionCreator } from "../actionPath";
+import HomePageComp from "../components/homePageComp";
 
-/* const mapStateToProps = (state, ownProps) => ({
-	
-});
+import { getBooks } from "../actionPath";
+
+export class HomePage extends Component {
+	componentWillMount() {
+		this.props.getBooks();
+	}
+
+	render() {
+		return (
+			<HomePageComp />
+		);
+	}
+}
 
 const mapDispatchToProps = {
-	
-}; */
+	getBooks
+};
 
-export default connect(null)(homePageComp);
+export default connect(null, mapDispatchToProps)(HomePage);

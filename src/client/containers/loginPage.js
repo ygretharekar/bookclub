@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { newLogin } from "../actionPath";
 import LoginPageComp from "../components/loginPageComp";
 
@@ -39,12 +40,16 @@ export class LoginPage extends Component {
 	render() {
 		return (
 			<div>
-				<LoginPageComp 
-					email={this.getEmail}
-					password={this.getPassword}
-					login={this.handleLogin}
-				/>
-
+				{
+					this.props.isAuthenticated ?
+						<Redirect to="/allbooks" />
+						:
+						<LoginPageComp 
+							email={this.getEmail}
+							password={this.getPassword}
+							login={this.handleLogin}
+						/>
+				}
 			</div>
 		);
 	}

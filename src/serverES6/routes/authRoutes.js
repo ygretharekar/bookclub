@@ -26,8 +26,10 @@ app.post(
 					email: userInfo.email
 				},
 				(err, user) => {
+
 					if(err) return next(err);
 
+					
 					if(!user){
 						const passwordDigest = bcrypt.hashSync(userInfo.password, 10);
 
@@ -94,7 +96,7 @@ app.post(
 					res.status(201).send(
 						{
 							token: createToken(user.username),
-							email: user.id,
+							email: user.email,
 							username: user.username
 						}
 					);

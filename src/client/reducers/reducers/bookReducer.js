@@ -3,7 +3,6 @@ const initialState = {
 	books:[]
 };
 
-
 export default (state = initialState, action) => {
 	switch (action.type) {
 	
@@ -19,6 +18,25 @@ export default (state = initialState, action) => {
 			loading: false
 		};
 
+	case "ADD_BOOK":
+		return {
+			...state,
+			books: [
+				...new Set(
+					[
+						...state.books,
+						...action.payload
+					]
+				)
+			]
+		};
+	
+	case "INIT_BOOKS":
+		return {
+			...state,
+			books: action.payload
+		};
+		
 	default:
 		return state;
 	}

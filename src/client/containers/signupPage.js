@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import {Redirect} from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../actionPath/index";
 import SignupPageComp from "../components/signupPageComp";
@@ -50,19 +50,24 @@ export class SignupPage extends Component {
 	render() {
 		return (
 			<div>
-				<SignupPageComp
-					email={this.getEmail}
-					username={this.getUsername}
-					password={this.getPassword}
-					register={this.handleRegister} 
-				/>
+				{
+					this.props.isAuthenticated ?
+						<Redirect to="/allbooks" />
+						:
+						<SignupPageComp
+							email={this.getEmail}
+							username={this.getUsername}
+							password={this.getPassword}
+							register={this.handleRegister} 
+						/>
+				}
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => ({
-	user: state.user
+	isAuthenticated: state.authReducer.isAuthenticated
 });
 
 const mapDispatchToProps = {

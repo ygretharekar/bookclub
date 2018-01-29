@@ -52,5 +52,5 @@ export default props => (
 				</Message>
 			</Grid.Column>
 		</Grid>
-	</div>
+	</div>	
 );

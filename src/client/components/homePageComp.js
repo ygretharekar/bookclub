@@ -1,5 +1,4 @@
 import React from "react";
-// import PropTypes from "prop-types";
 import { Menu, Container, Button, Segment, Header, Icon } from "semantic-ui-react";
 import {Link} from "react-router-dom";
 let homePage = () => (
@@ -58,14 +57,21 @@ let homePage = () => (
 					inverted
 					style={{ fontSize: "1.7em", fontWeight: "normal" }}
 				/>
-				<Button primary size='huge'>
-					Get Started
-					<Icon name='right arrow' />
+				<Button
+					as={Link}
+					to="/allbooks"
+					primary 
+					size='huge'
+					animated
+				>
+					<Button.Content visible>Get Started</Button.Content>
+					<Button.Content hidden>
+						<Icon name='right arrow' />
+					</Button.Content>
 				</Button>
 			</Container>
 		</Segment>
 	</div>
 );
-
 
 export default homePage;
