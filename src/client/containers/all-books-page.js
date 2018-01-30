@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Menu, Container, Button, Card, Input } from "semantic-ui-react";
+import { Menu, Container, Button, Card, Input, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { logoutUser, searchBook, getBooks } from "../actionPath";
+import { logoutUser, searchBook, getBooks, createRequest } from "../actionPath";
 
 export class AllBooks extends Component {
 	constructor(props) {
@@ -13,12 +13,16 @@ export class AllBooks extends Component {
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleClick = this.handleClick.bind(this); 
+		this.handleRequest = this.handleRequest.bind(this);
+
 	}
 	
+
+
 	componentWillMount = () => {
 		this.props.getBooks();
 	}
-	
+
 	handleChange(e){
 		this.setState(
 			{
@@ -39,6 +43,13 @@ export class AllBooks extends Component {
 		);
 	}
 
+	handleRequest(title) {
+
+		if( this.props.username ){
+			this.props.createRequest({ book: title, user: this.props.username });
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -57,7 +68,7 @@ export class AllBooks extends Component {
 						</Menu.Item>
 				
 						{
-							!this.props.isAuthenticated &&
+							this.props.isAuthenticated &&
 							<Menu.Item>
 								<Input
 									action={
@@ -81,12 +92,12 @@ export class AllBooks extends Component {
 								<Menu.Item
 									position="right"
 								>
-									Username
+									{this.props.username}
 									<Button
 										onClick={this.props.logoutUser}
 										style={{ marginLeft: "0.5em" }}
 									>
-										Log In
+										Logout
 									</Button>
 								</Menu.Item>
 								:
@@ -118,10 +129,26 @@ export class AllBooks extends Component {
 							this.props.books.map(
 								(book, i) => (
 									<Card
-
 										key={i}
-										image={book.image}
-									/>
+									>
+										<Image src={book.image} />
+										<Card.Content extra>
+											<Button
+												color='red'
+												content='REQUEST'
+												label={{ 
+													basic: true, 
+													color: "red", 
+													pointing: "left", 
+													content: book.requests.length
+												}}
+												
+												disabled = { this.props.username == book.owner }
+												
+												onClick={() => this.handleRequest(book.title)}
+											/>
+										</Card.Content>
+									</Card>
 								)
 							)
 						}
@@ -142,7 +169,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
 	logoutUser,
 	searchBook,
-	getBooks
+	getBooks,
+	createRequest
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllBooks);

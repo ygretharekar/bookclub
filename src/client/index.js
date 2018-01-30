@@ -6,11 +6,10 @@ import "./containers/createReactApp/index.css";
 import Routes from "./routes/routes";
 import configureStore from "./store/store";
 
-// import registerServiceWorker from "./registerServiceWorker";
+import registerServiceWorker from "./registerServiceWorker";
 // import {unregister} from "./registerServiceWorker";
 
 // unregister();
-
 
 let store = configureStore();
 
@@ -21,4 +20,4 @@ ReactDOM.render(
 	document.getElementById("root")
 );
 
-//registerServiceWorker();
+registerServiceWorker();

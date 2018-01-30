@@ -36,7 +36,27 @@ export default (state = initialState, action) => {
 			...state,
 			books: action.payload
 		};
-		
+	
+	case "ADD_REQUEST":
+		return {
+			...state,
+			loading: false,
+			books: state.books.map(
+				book => book.title === action.payload.title ?
+					{
+						...book,
+						requests: [
+							...book.requests,
+							action.payload.user
+						]
+					}
+					:
+					book
+			)
+		};
+	
+	
+
 	default:
 		return state;
 	}

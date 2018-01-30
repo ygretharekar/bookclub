@@ -4,6 +4,8 @@ import { Redirect } from "react-router-dom";
 import { newLogin } from "../actionPath";
 import LoginPageComp from "../components/loginPageComp";
 
+//https://trello.com/c/Qn8Myzan
+
 export class LoginPage extends Component {
 
 	constructor(props){
@@ -49,6 +51,7 @@ export class LoginPage extends Component {
 							password={this.getPassword}
 							login={this.handleLogin}
 						/>
+						
 				}
 			</div>
 		);
@@ -57,13 +60,12 @@ export class LoginPage extends Component {
 
 const mapStateToProps = (state) => (
 	{
-		isAuthenticated: state.isAuthenticated
+		isAuthenticated: state.authReducer.isAuthenticated
 	}
 );
 
 const mapDispatchToProps = {
 	newLogin
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

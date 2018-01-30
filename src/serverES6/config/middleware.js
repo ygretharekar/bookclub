@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import session from "express-session";
 import passport from "passport";
-import fallback from "express-history-api-fallback";
+// import fallback from "express-history-api-fallback";
 import MongoStore from "connect-mongo";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -14,9 +14,8 @@ import bookRoutes from "../routes/bookRoutes";
 const mongoConnect = MongoStore(session);
 
 export default app => {
-	// app.use(express.static(path.join(__dirname, "../../build")));
+	app.use(express.static(path.join(__dirname, "../../build")));
 	app.use(express.static("build"));
-	app.use(fallback(path.join(__dirname, "../../build")));
 	app.use(bodyParser.urlencoded({extended: true}));
 	app.use(bodyParser.json());
 	app.use(cors());

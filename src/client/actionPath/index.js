@@ -173,6 +173,53 @@ export const searchBook =
 				.catch(
 					err => console.error(err)
 				);
-
-
 		};
+
+//////////////////////////REQUESTS////////////////////////////////
+
+export const ADD_REQUEST = "ADD_REQUEST";
+
+export const addRequest = payload => ({
+	type: ADD_REQUEST,
+	payload
+});
+
+
+
+export const createRequest = 
+	request =>
+		dispatch => {
+			dispatch(loading());
+			
+			console.log("====================================");
+			console.log("Request:  ", request);
+			console.log("====================================");
+
+			axios
+				.post(
+					"/api/request", 
+					request
+				)
+				.then(
+					res => {
+
+
+						console.log("====================================");
+						console.log(res.data);
+						console.log("====================================");
+						dispatch(addRequest(res.data));
+					}
+				)
+				.catch( err => console.error(err));
+		};
+
+
+////////////////////////GRANT_REQUEST//////////////////////////////
+
+export const GRANT_REQUEST = "GRANT_REQUEST";
+
+export const acceptRequest = payload => ({
+	type: GRANT_REQUEST,
+	payload
+});
+
