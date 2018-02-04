@@ -5,7 +5,9 @@ let initialState = {
 	loginError:"",
 	token:"",
 	isFetching: false,
-	isAuthenticated: false
+	isAuthenticated: false,
+	accepted: [],
+	rejected: []
 };
 
 export default (state = initialState, action) => {

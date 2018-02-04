@@ -15,10 +15,9 @@ export class AllBooks extends Component {
 		this.handleClick = this.handleClick.bind(this); 
 		this.handleRequest = this.handleRequest.bind(this);
 
+
 	}
 	
-
-
 	componentWillMount = () => {
 		this.props.getBooks();
 	}
@@ -92,7 +91,9 @@ export class AllBooks extends Component {
 								<Menu.Item
 									position="right"
 								>
-									{this.props.username}
+									<Link to='/profile'>
+										{this.props.username}
+									</Link>
 									<Button
 										onClick={this.props.logoutUser}
 										style={{ marginLeft: "0.5em" }}
@@ -142,9 +143,7 @@ export class AllBooks extends Component {
 													pointing: "left", 
 													content: book.requests.length
 												}}
-												
-												disabled = { this.props.username == book.owner }
-												
+												disabled = { this.props.username === book.owner }			
 												onClick={() => this.handleRequest(book.title)}
 											/>
 										</Card.Content>

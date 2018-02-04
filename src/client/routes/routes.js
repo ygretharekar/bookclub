@@ -6,6 +6,7 @@ import HomePage from "../containers/homePage";
 import LoginPage from "../containers/loginPage";
 import SignupPage from "../containers/signupPage";
 import AllBooksPage from "../containers/all-books-page";
+import ProfilePage from "../containers/profilePage";
 
 import "../styles/Semantic-UI-CSS-master/semantic.min.css";
 import "../styles/main.css";
@@ -22,6 +23,7 @@ class Routes extends Component {
 							<Route exact path="/login" component={LoginPage} />
 							<Route exact path="/signup" component={SignupPage} />
 							<Route exact path="/allbooks" component={AllBooksPage} />
+							<Route exact path="/profile" component={ProfilePage} />
 						</Switch>	
 					</div>
 				</Router>

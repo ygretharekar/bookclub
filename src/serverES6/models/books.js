@@ -11,7 +11,8 @@ const bookSchema = new Schema(
 		author: String,
 		image: String,
 		owner: String,
-		requests: [String]
+		requests: [String],
+		traded: Boolean
 	}
 );
 

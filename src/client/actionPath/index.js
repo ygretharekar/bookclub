@@ -36,8 +36,11 @@ export const newLogin =
 						let u = {
 							username: res.data.username,
 							email: res.data.email,
-							token: res.data.token
+							token: res.data.token,
+							accepted: res.data.accepted,
+							rejected: res.data.rejected
 						};
+						
 						dispatch(receiveLogin(u));
 					}
 				)
@@ -218,8 +221,95 @@ export const createRequest =
 
 export const GRANT_REQUEST = "GRANT_REQUEST";
 
-export const acceptRequest = payload => ({
+export const grantRequest = payload => ({
 	type: GRANT_REQUEST,
 	payload
 });
 
+export const acceptRequest = 
+	book =>
+		dispatch => {
+			dispatch(loading());
+			axios
+				.post(
+					"/api/accept",
+					book
+				)
+				.then(
+					res => {
+						console.log("accepted: ", res.data);
+						dispatch(found());
+					}
+				)
+				.catch(err => console.error(err));
+		};
+
+//////////////////////////REJECT///////////////////////////////////
+
+export const REJECT = "REJECT";
+
+export const rejectRequest = payload => ({
+	type: REJECT,
+	payload
+});
+
+export const declineRequest = 
+	book =>
+		dispatch => {
+			dispatch(loading());
+			axios
+				.post(
+					"/api/reject",
+					book
+				)
+				.then(
+					res => {
+						console.log("====================================");
+						console.log("rejected: ", res.data);
+						console.log("====================================");
+						dispatch(found());
+					}
+				)
+				.catch(err => console.error(err));
+		};
+	
+////////////////////DELETE_REQUEST////////////////////////
+
+export const ACCEPTED = "ACCEPTED";
+
+export const accepted = payload => ({
+	type: ACCEPTED,
+	payload
+});
+
+export const REJECTED = "REJECTED";
+
+export const rejected = payload => ({
+	type: REJECTED,
+	payload
+});
+
+export const confirmTrade = 
+	params =>
+		dispatch => {
+			dispatch(loading());
+			axios
+				.post(
+					"/api/confirmtrade",
+					params
+				)
+				.then(
+					res => {
+
+						console.log("====================================");
+						console.log("response from server: ",  res);
+						console.log("====================================");
+						dispatch(accepted(res));
+
+					}
+				)
+				.catch(err => console.error(err.response));
+			dispatch(found());
+		
+			
+		};

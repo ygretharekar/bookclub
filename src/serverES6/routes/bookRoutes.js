@@ -3,6 +3,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 
 import Book from "../models/books";
+import User from "../models/users";
 
 const app = express();
 
@@ -146,9 +147,95 @@ app.post(
 				console.log(doc);
 				console.log("====================================");
 				res.status(200).send(doc);
+
 			}
 		);
 	}
+);
+
+app.post(
+	"/api/confirmtrade",
+	(req, res) => {
+		console.log("====================================");
+		console.log("sent body: ", req.body);
+		console.log("====================================");
+
+		const {book, owner, request, requests} = req.body;
+		
+
+		Book.findOne(
+			{
+				title: book
+			},
+			(err, doc) => {
+				if(err) console.error("Something went wrong while changing user data", err);
+				console.log("====================================");
+				console.log("book: ", doc);
+				console.log("====================================");
+				
+				let requests = doc.requests;
+
+				doc.requests = requests.filter( book => book != request );
+
+				doc.traded = true;
+
+				doc.save();
+			}
+		);
+
+		User.findOne(
+			{
+				username: request
+			},
+			(err, doc) => {
+				if(err) console.error("Something went wrong while changing user data", err);
+
+				doc.accepted = [
+					...doc.accepted,
+					{ title: book, owner: owner }
+				];
+
+				doc.save();
+
+				console.log("====================================");
+				console.log("user accepted: ", doc);
+				console.log("====================================");
+
+			}
+		);
+
+		requests.forEach(element => {
+
+			if(element != request){
+
+				User.findOne(
+					{
+						username: element
+					},
+					
+					(err, doc) => {
+						if(err) {
+							console.error("Something went wrong while changing user data", err);
+							return;
+						}
+						
+						doc.rejected = [
+							...doc.rejected,
+							{ title: book, owner: owner }
+						];
+					
+						doc.save();
+
+						console.log("====================================");
+						console.log("user rejected: ", doc);
+						console.log("====================================");
+					}
+				);
+			}
+		});
+		res.status(200).send({ owner: owner, title: book, request: request, traded: true });
+	}
+
 );
 
 export default app;

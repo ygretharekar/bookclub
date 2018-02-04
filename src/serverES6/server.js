@@ -6,7 +6,7 @@ const app = express();
 appConfig(app);
 
 app.listen(
-	8100, 
+	8100,
 	err => {
 		if (err) throw err;
 

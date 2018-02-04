@@ -1,6 +1,6 @@
 const initialState = {
 	loading: false,
-	books:[]
+	books:[],
 };
 
 export default (state = initialState, action) => {
@@ -52,10 +52,30 @@ export default (state = initialState, action) => {
 					}
 					:
 					book
+
 			)
 		};
-	
-	
+
+		
+	case "ACCEPTED":
+		return {
+			...state,
+			loading: false,
+			books: state.books.map(
+				book => book.title === action.payload.title ?
+					{
+						...book,
+						requests: book.requests.filter(
+							request => request !== action.payload.request
+						),
+						traded: true
+					}
+					:
+					book
+			)
+		};
+		
+		
 
 	default:
 		return state;

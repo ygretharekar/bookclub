@@ -9,8 +9,11 @@ const userSchema = new Schema(
 			unique: true,
 			lowercase: true
 		},
+		accepted: [{ title: String, owner: String }],
+		rejected: [{ title: String, owner: String }],
 		username: String,
 		password: String
+		
 	}
 );
 

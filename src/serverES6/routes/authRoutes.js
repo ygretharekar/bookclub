@@ -37,7 +37,9 @@ app.post(
 							{
 								email: userInfo.email,
 								username: userInfo.username,
-								password: passwordDigest
+								password: passwordDigest,
+								accepted: [],
+								rejected: []
 							}
 						);
 						
@@ -49,7 +51,9 @@ app.post(
 									{	
 										email: userInfo.email,
 										username: userInfo.username,
-										token: createToken(userInfo.username)
+										token: createToken(userInfo.username),
+										accepted: [],
+										rejected: []
 									}
 								);
 							}
@@ -64,13 +68,16 @@ app.post(
 							{
 								email: user.email,
 								username: user.username,
-								token: createToken(user.username)
+								token: createToken(user.username),
+								accepted: user.accepted,
+								rejected: user.rejected
 							}
 						);
 					}
 				}
 			);
 		}
+
 		else{
 			console.log("====================================");
 			console.log("invalid registeration ", valid.errors);
@@ -97,7 +104,9 @@ app.post(
 						{
 							token: createToken(user.username),
 							email: user.email,
-							username: user.username
+							username: user.username,
+							accepted: user.accepted,
+							rejected: user.rejected
 						}
 					);
 				}
